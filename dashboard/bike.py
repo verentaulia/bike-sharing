@@ -159,7 +159,7 @@ min_date = pd.to_datetime(day_df['dteday']).dt.date.min()
 max_date = pd.to_datetime(day_df['dteday']).dt.date.max()
  
 with st.sidebar:
-    st.image("https://github.com/dicodingacademy/assets/raw/main/logo.png")
+    st.image("https://raw.githubusercontent.com/verentaulia/bike-sharing/4f625891172bf390a7c982138a7397f5dd994dab/dashboard/capital_bikeshare.png")
     
     # Mengambil start_date & end_date dari date_input
     start_date, end_date = st.date_input(
