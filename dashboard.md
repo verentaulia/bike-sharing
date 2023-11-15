@@ -60,16 +60,16 @@ Create Data Visualization that answer business questions
 
 ## Dashboard with Streamlit
 
-https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2017).png
+![Bikesharing Rental Dashboard](https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2017).png)
 
-https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2018).png
+![Bikesharing Rental Dashboard](https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2018).png)
 
-https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2019).png
+![Bikesharing Rental Dashboard](https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2019).png)
 
-https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2020).png
+![Bikesharing Rental Dashboard](https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2020).png)
 
-https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2021).png
+![Bikesharing Rental Dashboard](https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2021).png)
 
-https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2022).png
+![Bikesharing Rental Dashboard](https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2022).png)
 
-https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2023).png
+![Bikesharing Rental Dashboard](https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2023).png)
