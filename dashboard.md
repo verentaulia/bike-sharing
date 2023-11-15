@@ -60,7 +60,7 @@ Create Data Visualization that answer business questions
 
 ## Dashboard with Streamlit
 
-![Bikesharing Rental Dashboard](https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2017).png)
+![Bikesharing Rental Dashboard](screenshots/Screenshot%20(2017).png)
 
 ![Bikesharing Rental Dashboard](https://raw.githubusercontent.com/verentaulia/bike-sharing/blob/master/screenshots/Screenshot%20(2018).png)
 
