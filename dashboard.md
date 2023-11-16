@@ -37,7 +37,7 @@ Create Data Visualization that answer business questions
 3. Check CSV File Location: Ensure the CSV file remains in the same folder as dashboard.py.
 4. Run the Dashboard:
 - Open Visual Studio Code (VSCode).
-- Run the dashboard by typing the following command in the terminal: streamlit run dashboard/bike.py
+- Run the dashboard by typing the following command in the terminal: streamlit run bike.py
 5. Access the Dashboard: Open a web browser and access the dashboard through the URL displayed in the terminal.
 
 ## Analysis
