@@ -59,6 +59,7 @@ Create Data Visualization that answer business questions
 - Terdapat perbedaan pola penyewaan sepeda antara hari kerja dan akhir pekan. Pada hari kerja, puncak aktivitas terjadi pada pukul 08.00 dan 17.00, mencerminkan kebutuhan transportasi untuk pergi dan pulang dari tempat kerja. Di akhir pekan, frekuensi penyewaan lebih tinggi pada siang hari.
 
 ## Dashboard with Streamlit
+View the dashboard on streamlit could directly on this link: https://bike-sharing-verent.streamlit.app/
 
 ![Bikesharing Rental Dashboard](screenshots/Screenshot%20(2017).png)
 
