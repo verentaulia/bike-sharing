@@ -5,8 +5,6 @@ import streamlit as st
 
 sns.set(style='dark')
 
-
-
 # Menyiapkan daily_rent_df
 def create_daily_rent_df(df):
     daily_rent_df = df.groupby(by='dteday').agg({
