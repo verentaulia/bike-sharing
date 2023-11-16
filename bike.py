@@ -141,10 +141,10 @@ def create_hourly_rent_df(df):
     return hourly_rent_df
 
 #menyiapkan data
-day_df=pd.read_csv("day_df.csv")
+day_df=pd.read_csv("https://raw.githubusercontent.com/verentaulia/bike-sharing/master/dashboard/day_df.csv")
 day_df.head()
 
-hr_df=pd.read_csv("hr_df.csv")
+hr_df=pd.read_csv("https://raw.githubusercontent.com/verentaulia/bike-sharing/master/dashboard/hr_df.csv")
 hr_df.head()
 
 day_df['dteday'] = pd.to_datetime(day_df['dteday'])
