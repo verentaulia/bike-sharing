@@ -10,13 +10,6 @@ pip install  pandas matplotlib seaborn jupyter streamlit
 2. **Run streamlit app**
 streamlit run bike.py
 
-<<<<<<< HEAD
-=======
-4. Dashboard:
-- Set up the DataFrame which will be used
-- Make filter components on the dashboard
-- Complete the dashboard with various data visualizations
-
 
 ## Getting Started
 ### 1. Running the Analysis Notebook (notebook.ipynb)
