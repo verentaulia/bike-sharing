@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+from babel.numbers import format_currency
 
 sns.set(style='dark')
 
@@ -82,7 +83,7 @@ def create_workingday_rent_df(df):
 
 # Menyiapkan month_rent_df
 def create_month_rent_df(df):
-    month_rent_df = df.resample(rule='M', on='dteday').agg({
+    month_rent_df = df.resample(rule='ME', on='dteday').agg({
         "casual": "sum",
         "registered": "sum",
         "count": "sum"
@@ -132,13 +133,27 @@ def create_weather_users_df(df):
 
 # Menyiapkan hourly_rent_df
 def create_hourly_rent_df(df):
-    hourly_rent_df = hr_df.groupby(by=['hr','weekday']).agg({
+    hourly_rent_df = hr_df.groupby(by=['hr','workingday']).agg({
         "cnt": "sum"
     })
     hourly_rent_df = hourly_rent_df.reset_index()
 
     
     return hourly_rent_df
+
+#Menyiapkan RFM Analysis
+def create_rfm_df(df):
+    rfm_df = day_df.groupby(by="weekday", as_index=False).agg({
+        "dteday": "max",
+        "instant": "nunique",
+        "count": "sum"
+    })
+    rfm_df.columns = ["weekday", "max_order_timestamp", "frequency", "monetary"]
+    rfm_df["max_order_timestamp"] = rfm_df["max_order_timestamp"].dt.date
+    recent_date = day_df["dteday"].dt.date.max()
+    rfm_df["recency"] = rfm_df["max_order_timestamp"].apply(lambda x: (recent_date - x).days)
+    rfm_df.drop("max_order_timestamp", axis=1, inplace=True)
+    return rfm_df
 
 #menyiapkan data
 day_df=pd.read_csv("https://raw.githubusercontent.com/verentaulia/bike-sharing/master/dashboard/day_df.csv")
@@ -180,6 +195,7 @@ month_rent_df = create_month_rent_df(main_df)
 season_rent_df = create_season_rent_df(main_df)
 hourly_rent_df = create_hourly_rent_df(main_df)
 weather_users_df = create_weather_users_df(main_df)
+rfm_df = create_rfm_df(main_df)
 
 # Membuat Dashboard secara lengkap
 
@@ -351,12 +367,12 @@ st.pyplot(fig)
 # jumlah penyewaan per jam
 st.subheader('Hourly Rentals')
 
-fig, ax = plt.subplots(figsize=(30, 20))
+fig, ax = plt.subplots(figsize=(20, 5))
 sns.lineplot(
     data=hourly_rent_df,
     x='hr',
     y='cnt',
-    hue='weekday',
+    hue='workingday',
     palette='bright'
 )
 
@@ -371,34 +387,47 @@ ax.legend(title='day')
 st.pyplot(fig)
 
 
-# Hitung Recency, Frequency, dan Monetary
-current_date = day_df['dteday'].max()  # Tanggal analisis
-day_df['recency'] = (current_date - day_df['dteday']).dt.days
-day_df['frequency'] = day_df['count']
-day_df['monetary'] = day_df['casual'] + day_df['registered']
+#RFM Analysis
 
-# Segmentasi pelanggan berdasarkan Recency dan Frequency
-bins_recency = [0, 7, 14, 30, 365]  # Tentukan batas-batas kategori Recency
-bins_frequency = [0, 50, 100, 200, 500, 1000]  # Tentukan batas-batas kategori Frequency
+st.subheader("Best Customer Based on RFM Parameters (day)")
+col1, col2, col3 = st.columns(3)
 
-day_df['recency_category'] = pd.cut(day_df['recency'], bins=bins_recency, labels=['Hari ini', 'Minggu lalu', '2 Minggu lalu', 'Bulan lalu'])
-day_df['frequency_category'] = pd.cut(day_df['frequency'], bins=bins_frequency, labels=['Sangat Jarang', 'Jarang', 'Cukup Sering', 'Sering', 'Sangat Sering'])
+with col1:
+    avg_recency = round(rfm_df.recency.mean(), 1)
+    st.metric("Average Recency (days)", value=avg_recency)
 
-# Visualisasi
-st.header('RFM Analysis on Bike Sharing Dataset')
-st.subheader('Segmentation based on Recency and Frequency')
+with col2:
+    avg_frequency = round(rfm_df.frequency.mean(), 2)
+    st.metric("Average Frequency", value=avg_frequency)
 
-# Scatter plot Recency vs Frequency
-plt.figure(figsize=(10, 6))
-sns.scatterplot(x='recency', y='frequency', data=day_df, hue='monetary', palette='viridis', size='monetary', sizes=(20, 200), alpha=0.8)
-plt.xlabel('Recency (Days)')
-plt.ylabel('Frequency')
-plt.title('Recency vs Frequency')
-st.pyplot()
+with col3:
+    avg_frequency = format_currency(rfm_df.monetary.mean(), "AUD", locale='es_CO') 
+    st.metric("Average Monetary", value=avg_frequency)
 
-# Tampilkan tabel hasil segmentasi
-st.subheader('Segmentation Results')
-st.write(day_df[['dteday', 'recency', 'frequency', 'monetary', 'recency_category', 'frequency_category']])
-st.set_option('deprecation.showPyplotGlobalUse', False)
+fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(35, 15))
+colors = ["#90CAF9", "#90CAF9", "#90CAF9", "#90CAF9", "#90CAF9","#90CAF9", "#90CAF9"]
+
+sns.barplot(y="recency", x="weekday", data=rfm_df.sort_values(by="recency", ascending=True).head(7), palette=colors, hue="weekday", legend=False, ax=ax[0])
+ax[0].set_ylabel(None)
+ax[0].set_xlabel(None)
+ax[0].set_title("By Recency (days)", loc="center", fontsize=50)
+ax[0].tick_params(axis='y', labelsize=25)
+ax[0].tick_params(axis ='x', labelsize=30, rotation=45)
+
+sns.barplot(y="frequency", x="weekday", data=rfm_df.sort_values(by="frequency", ascending=False).head(7), palette=colors, hue="weekday", legend=False, ax=ax[1])
+ax[1].set_ylabel(None)
+ax[1].set_xlabel(None)
+ax[1].set_title("By Frequency", loc="center", fontsize=50)
+ax[1].tick_params(axis='y', labelsize=25)
+ax[1].tick_params(axis='x', labelsize=30, rotation=45)
+
+sns.barplot(y="monetary", x="weekday", data=rfm_df.sort_values(by="monetary", ascending=False).head(7), palette=colors, hue="weekday", legend=False, ax=ax[2])
+ax[2].set_ylabel(None)
+ax[2].set_xlabel(None)
+ax[2].set_title("By Monetary", loc="center", fontsize=50)
+ax[2].tick_params(axis='y', labelsize=25)
+ax[2].tick_params(axis='x', labelsize=30, rotation=45)
+
+st.pyplot(fig)
 
 st.caption('Copyright (c) Aulia Verent Amriawati 2023')
