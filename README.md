@@ -53,14 +53,14 @@ streamlit run bike.py
 ## Dashboard with Streamlit
 View the dashboard on streamlit could directly on this link: https://bike-sharing-verent.streamlit.app/
 
-![Bikesharing Rental Dashboard](screenshots/Screenshot 1.png)
+![Bikesharing Rental Dashboard](screenshots/Screenshot%201.png)
 
-![Bikesharing Rental Dashboard](screenshots/Screenshot 2.png)
+![Bikesharing Rental Dashboard](screenshots/Screenshot%202.png)
 
-![Bikesharing Rental Dashboard](screenshots/Screenshot 3.png)
+![Bikesharing Rental Dashboard](screenshots/Screenshot%203.png)
 
-![Bikesharing Rental Dashboard](screenshots/Screenshot 4.png)
+![Bikesharing Rental Dashboard](screenshots/Screenshot%204.png)
 
-![Bikesharing Rental Dashboard](screenshots/Screenshot 5.png)
+![Bikesharing Rental Dashboard](screenshots/Screenshot%205.png)
 
-![Bikesharing Rental Dashboard](screenshots/Screenshot 6.png)
+![Bikesharing Rental Dashboard](screenshots/Screenshot%206.png)
