@@ -4,8 +4,6 @@ import seaborn as sns
 import streamlit as st
 from babel.numbers import format_currency
 
-sns.set(style='dark')
-
 # Menyiapkan daily_rent_df
 def create_daily_rent_df(df):
     daily_rent_df = df.groupby(by='dteday').agg({
@@ -407,21 +405,21 @@ with col3:
 fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(35, 15))
 colors = ["#90CAF9", "#90CAF9", "#90CAF9", "#90CAF9", "#90CAF9","#90CAF9", "#90CAF9"]
 
-sns.barplot(y="recency", x="weekday", data=rfm_df.sort_values(by="recency", ascending=True).head(7), palette=colors, hue="weekday", legend=False, ax=ax[0])
+sns.barplot(y="recency", x="weekday", data=rfm_df.sort_values(by="recency", ascending=True).head(7), palette=colors, hue="weekday", ax=ax[0])
 ax[0].set_ylabel(None)
 ax[0].set_xlabel(None)
 ax[0].set_title("By Recency (days)", loc="center", fontsize=50)
 ax[0].tick_params(axis='y', labelsize=25)
 ax[0].tick_params(axis ='x', labelsize=30, rotation=45)
 
-sns.barplot(y="frequency", x="weekday", data=rfm_df.sort_values(by="frequency", ascending=False).head(7), palette=colors, hue="weekday", legend=False, ax=ax[1])
+sns.barplot(y="frequency", x="weekday", data=rfm_df.sort_values(by="frequency", ascending=False).head(7), palette=colors, hue="weekday", ax=ax[1])
 ax[1].set_ylabel(None)
 ax[1].set_xlabel(None)
 ax[1].set_title("By Frequency", loc="center", fontsize=50)
 ax[1].tick_params(axis='y', labelsize=25)
 ax[1].tick_params(axis='x', labelsize=30, rotation=45)
 
-sns.barplot(y="monetary", x="weekday", data=rfm_df.sort_values(by="monetary", ascending=False).head(7), palette=colors, hue="weekday", legend=False, ax=ax[2])
+sns.barplot(y="monetary", x="weekday", data=rfm_df.sort_values(by="monetary", ascending=False).head(7), palette=colors, hue="weekday", ax=ax[2])
 ax[2].set_ylabel(None)
 ax[2].set_xlabel(None)
 ax[2].set_title("By Monetary", loc="center", fontsize=50)
